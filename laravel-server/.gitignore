@@ -21,3 +21,5 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+VERCEL_DEPLOYMENT_GUIDE.md
