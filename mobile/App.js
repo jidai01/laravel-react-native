@@ -23,6 +23,14 @@ function QuizApp() {
   const db = useSQLiteContext();
   useKeepAwake(); 
 
+  // Debug API Route
+  useEffect(() => {
+    console.log("-----------------------------------------");
+    console.log(`🚀 API Route: ${API_URL}`);
+    console.log(`📂 Loaded from: ${process.env.EXPO_PUBLIC_API_URL ? '.env file' : 'Default fallback'}`);
+    console.log("-----------------------------------------");
+  }, []);
+
   const [loading, setLoading] = useState(false);
   const [view, setView] = useState('login'); 
   const [auth, setAuth] = useState({ token: null, user: null });
