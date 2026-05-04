@@ -19,5 +19,16 @@
             "src": "/(.*)",
             "dest": "/api/index.php"
         }
-    ]
+    ],
+    "env": {
+        "APP_ENV": "production",
+        "APP_DEBUG": "false",
+        "APP_KEY": "base64:gfvPmb/OdS4R/1oFJsN27FYgsEWtI0woHo4U+MRAnoQ=",
+        "APP_URL": "https://laravel-react-native.vercel.app",
+        "LOG_CHANNEL": "stderr",
+        "CACHE_STORE": "array",
+        "SESSION_DRIVER": "cookie",
+        "SESSION_DOMAIN": null,
+        "SESSION_SECURE_COOKIE": "true"
+    }
 }
