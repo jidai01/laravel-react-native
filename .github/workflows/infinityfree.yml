@@ -24,7 +24,7 @@ jobs:
       - name: 📦 Install Composer Dependencies
         run: |
           cd laravel-server
-          composer install --no-dev --optimize-autoloader --no-interaction
+          composer install --no-dev --optimize-autoloader --no-interaction --ignore-platform-req=php
 
       - name: 🏗️ Install NPM Dependencies & Build
         run: |
