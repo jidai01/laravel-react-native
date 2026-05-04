@@ -11,10 +11,11 @@ This is the React Native (Expo) application for **QuizLOS** participants.
    ```
 
 2. **Configure Environment Variables**:
-   Create a `.env` file in the `mobile/` directory and add your server's API URL:
-   ```env
-   EXPO_PUBLIC_API_URL=http://YOUR_SERVER_IP:8000/api
+   Copy the example environment file and update it with your server's IP address:
+   ```bash
+   cp .env.example .env
    ```
+   Open `.env` and set your `EXPO_PUBLIC_API_URL`.
    *Note: Ensure your mobile device and server are on the same network.*
 
 3. **Run the App**:
