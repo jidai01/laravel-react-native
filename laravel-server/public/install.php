@@ -55,9 +55,22 @@ try {
 
     // C. Create Storage Link
     echo "Creating Storage Link... ";
-    // InfinityFree often has issues with symlinks, we'll try artisan first
-    Artisan::call('storage:link');
-    echo "Done.<br>";
+    $target = __DIR__.'/../storage/app/public';
+    $link = __DIR__.'/storage';
+    
+    if (file_exists($link)) {
+        echo "Link already exists. ";
+    } else {
+        try {
+            if (symlink($target, $link)) {
+                echo "Done.<br>";
+            } else {
+                echo "<span style='color:orange'>Failed to create symlink.</span><br>";
+            }
+        } catch (\Exception $e) {
+            echo "<span style='color:orange'>Warning: Symlink failed (" . $e->getMessage() . "). You may need to create it manually.</span><br>";
+        }
+    }
 
     echo "<br><b style='color:green'>Deployment Tasks Completed Successfully!</b>";
     echo "<br>Please delete this file (public/install.php) for security.";
