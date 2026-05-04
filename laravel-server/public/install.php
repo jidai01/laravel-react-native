@@ -14,6 +14,23 @@ if (!isset($_GET['token']) || $_GET['token'] !== $secretToken) {
     die("Unauthorized access. Please provide the correct token.");
 }
 
+// 2. Fix for "Please provide a valid cache path" on InfinityFree
+// Create missing storage directories before Laravel boots
+$storageDirs = [
+    __DIR__.'/../storage/app/public',
+    __DIR__.'/../storage/framework/cache',
+    __DIR__.'/../storage/framework/cache/data',
+    __DIR__.'/../storage/framework/sessions',
+    __DIR__.'/../storage/framework/views',
+    __DIR__.'/../storage/logs',
+];
+
+foreach ($storageDirs as $dir) {
+    if (!file_exists($dir)) {
+        mkdir($dir, 0777, true);
+    }
+}
+
 // 2. Load Laravel Environment
 require __DIR__.'/../vendor/autoload.php';
 $app = require_once __DIR__.'/../bootstrap/app.php';
