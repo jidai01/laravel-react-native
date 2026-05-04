@@ -3,78 +3,69 @@
 <div align="center">
   <img src="laravel-server/public/logo.svg" width="150" height="150" alt="QuizLOS Logo">
   <h3>Secure • Professional • Offline-First</h3>
-  <p><b>A modern examination platform for high-integrity testing.</b></p>
+  <p><b>A modern examination ecosystem for high-integrity testing.</b></p>
 </div>
 
 ---
 
-## 🌟 Overview
+## 🌟 Project Ecosystem
 
-**QuizLOS** is a premium, secure, and offline-first quiz platform designed for schools and organizations that require high-integrity examinations. It consists of:
-- **Admin Dashboard**: A robust Laravel 11 backend for real-time monitoring and quiz management.
-- **Participant App**: A sleek React Native (Expo) mobile application with built-in anti-cheat technology.
+**QuizLOS** is a full-stack examination platform designed to eliminate cheating and provide real-time oversight for administrators.
+
+- **[Admin Server](laravel-server/)**: Laravel 11 Backend & Dashboard.
+- **[Participant App](mobile/)**: React Native Expo Mobile Application.
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 Tech Stack & Security
 
 ### 🖥️ Backend (Laravel 11)
-- **Engine**: PHP 8.2+ & Laravel 11.
-- **Security**: Laravel Sanctum for API Auth & Rate Limiting.
-- **Monitoring**: Custom Live Activity Log with Asia/Makassar (WITA) precision.
-- **UI/UX**: Indigo Premium Theme, DataTables integration, Responsive Design.
+- **Security**: Sanctum API Auth, Rate Limiting, Input Sanitation.
+- **Monitoring**: Custom Live Log Activity with Asia/Makassar (WITA) precision.
+- **UI**: Premium Indigo UI with DataTables for advanced data management.
 
 ### 📱 Mobile (React Native Expo)
-- **Engine**: Expo SDK 51+ (Modular Architecture).
-- **Security**: Background Detection (Anti-Cheat), `expo-navigation-bar` System Lock.
-- **Database**: `expo-sqlite` for offline-first data integrity.
-- **Styling**: Unified QLOS Branding with smooth micro-animations.
+- **Security**: **Anti-Cheat Enforcement** (Background Detection), System Navigation Lock.
+- **Offline First**: Local data persistence via `expo-sqlite` and `SecureStore`.
+- **Branding**: Official QLOS "Q-Timer" branding with environment-based config.
 
 ---
 
 ## 🔐 Key Features
 
-- **🛡️ Anti-Cheat Enforcement**: Automatic disqualification if the participant exits the app or enters background mode.
-- **📊 Real-time Activity Monitor**: Admins see exactly when a participant starts, answers, or changes their response.
-- **🌐 Offline-First Sync**: Take quizzes without constant internet; progress is saved locally and synced automatically when online.
-- **⚡ Performance Tables**: Advanced search, sort, and pagination for large participant datasets.
-- **🕒 WITA Sync**: All logs are synchronized to Asia/Makassar (WITA) time for accurate examination auditing.
+- **🛡️ Integrity Enforcement**: Automatic disqualification if the app is minimized or exited.
+- **📊 Real-time Oversight**: Admins can track exactly when questions are answered or changed.
+- **🌐 Seamless Sync**: Works offline and syncs progress automatically when reconnected.
+- **🕒 Regional Precision**: Full support for Asia/Makassar (WITA) timezone across the system.
 
 ---
 
-## 🚀 Installation & Setup
+## 🚀 Quick Start
 
-### 1. Admin Server (Laravel)
-```bash
-cd laravel-server
-composer install
-npm install
-# Configure your .env (DB, App URL)
-php artisan migrate:fresh --seed
-php artisan serve --host=0.0.0.0
-```
+1. **Backend**:
+   ```bash
+   cd laravel-server && php artisan serve --host=0.0.0.0
+   ```
+2. **Mobile**:
+   ```bash
+   cd mobile && npx expo start
+   ```
 
-### 2. Participant App (Mobile)
-```bash
-cd mobile
-npm install
-# Update API_URL in src/theme/constants.js
-npx expo start
-```
+*See individual folder READMEs for detailed installation steps.*
 
 ---
 
-## 📂 Project Structure
+## 📂 Repository Structure
 ```text
 .
-├── laravel-server/   # Backend, Admin Panel, and API
-├── mobile/           # React Native Participant Application
-└── README.md         # Main project documentation
+├── laravel-server/   # Laravel 11 Backend & Admin Dashboard
+├── mobile/           # React Native Expo Participant App
+└── README.md         # Main Project Documentation
 ```
 
 ---
 
 ## 📄 License
-This project is for internal development and examination purposes.
+Internal development for high-integrity examination environments.
 
 **QuizLOS v.1.0 • Built for Integrity**

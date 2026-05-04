@@ -1,46 +1,42 @@
 # QuizLOS Admin Server (Laravel) 🖥️
 
-This branch contains the backend logic and administrative dashboard for the **QuizLOS** platform.
+This is the backend logic and administrative dashboard for the **QuizLOS** platform.
 
 ## 🚀 Setup Instructions
 
-1. **Clone the branch**:
+1. **Install Dependencies**:
    ```bash
-   git clone -b laravel-server https://github.com/jidai01/laravel-react-native.git
-   ```
-
-2. **Install Dependencies**:
-   ```bash
+   cd laravel-server
    composer install
    npm install
    ```
 
-3. **Configure Environment**:
+2. **Configure Environment**:
    - Copy `.env.example` to `.env`.
-   - Set `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`.
-   - Ensure `TIMEZONE=Asia/Makassar` is set.
+   - Set your database credentials (`DB_DATABASE`, `DB_USERNAME`, etc.).
+   - Ensure `APP_TIMEZONE=Asia/Makassar` is set for accurate logs.
 
-4. **Initialize Database**:
+3. **Initialize System**:
    ```bash
    php artisan key:generate
    php artisan migrate:fresh --seed
    ```
 
-5. **Run the Server**:
+4. **Run the Server**:
    ```bash
    php artisan serve --host=0.0.0.0
    ```
+   *Note: Use the host IP to allow mobile devices to connect.*
 
 ## 🛡️ Admin Features
-- **Dashboard**: Real-time activity monitor for all active participants.
-- **Quiz Management**: Create, edit, and delete questions with "Shuffle Options" configuration.
-- **Participant Management**: Delete accounts, reset disqualification status, and audit results.
-- **API Endpoints**: Secure Sanctum-protected routes for the mobile app.
+- **📊 Live Activity Monitor**: Track participant progress and disqualifications in real-time.
+- **📝 Quiz Management**: Full CRUD for questions with "Shuffle Options" support.
+- **👥 Participant Audit**: Manage accounts, reset disqualification status, and delete records.
+- **🔒 Security**: Built-in rate limiting and Sanctum-protected API routes.
 
-## ⚙️ Key Configurations
-- **Rate Limiting**: Configured in `routes/api.php` to prevent brute-force.
-- **Timezone**: Defaulted to **Asia/Makassar (WITA)** for accurate log timestamps.
-- **DataTables**: Integrated for advanced searching and sorting.
+## 🎨 Design System
+- **Theme**: Premium Indigo UI.
+- **Data Tables**: Integrated DataTables for high-performance data management (search, sort, paginate).
 
 ---
-**QuizLOS Backend v.1.0**
+**QuizLOS Backend v.1.0 • Admin Control Center**

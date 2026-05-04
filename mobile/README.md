@@ -1,40 +1,37 @@
 # QuizLOS Participant App (Mobile) 📱
 
-This branch contains the React Native (Expo) application for **QuizLOS** participants.
+This is the React Native (Expo) application for **QuizLOS** participants.
 
 ## 🚀 Setup Instructions
 
-1. **Clone the branch**:
+1. **Install Dependencies**:
    ```bash
-   git clone -b mobile https://github.com/jidai01/laravel-react-native.git
-   ```
-
-2. **Install Dependencies**:
-   ```bash
+   cd mobile
    npm install
    ```
 
-3. **Configure API URL**:
-   - Update `API_URL` in `src/theme/constants.js` to match your server's IP address.
+2. **Configure Environment Variables**:
+   Create a `.env` file in the `mobile/` directory and add your server's API URL:
+   ```env
+   EXPO_PUBLIC_API_URL=http://YOUR_SERVER_IP:8000/api
+   ```
+   *Note: Ensure your mobile device and server are on the same network.*
 
-4. **Run the App**:
+3. **Run the App**:
    ```bash
    npx expo start
    ```
 
 ## 🔒 Security Features
-- **Anti-Cheat**: Automatically detects when the app enters the background and triggers disqualification.
-- **Lockdown Mode**: Utilizes `expo-navigation-bar` to lock navigation on Android devices during active quizzes.
-- **Secure Token**: Authentication tokens are stored using `expo-secure-store`.
+- **🛡️ Anti-Cheat Enforcement**: Automatically detects when the app enters the background and triggers disqualification.
+- **🚫 Lockdown Mode**: Utilizes `expo-navigation-bar` to lock navigation on Android devices during active quizzes.
+- **🔑 Secure Storage**: Authentication tokens are stored using `expo-secure-store`.
+- **🕵️ Activity Logs**: Sends real-time activity (selecting/changing answers) to the admin dashboard.
 
-## 📦 Architecture
-- **Screens**: Modularized into `Auth`, `Dashboard`, `Quiz`, and `History`.
-- **Offline First**: Uses `expo-sqlite` to store quiz data locally before syncing to the server.
-- **Branding**: Uses the official QLOS "Q-Timer" logo and Indigo theme.
-
-## ⚠️ Notes
-- Ensure your mobile device and server are on the same network.
-- For production, replace the local IP in `constants.js` with your production domain.
+## 📦 Project Highlights
+- **Branding**: Uses the official QLOS "Q-Timer" logo and unified Indigo theme.
+- **Offline First**: Uses `expo-sqlite` to store quiz progress locally before syncing.
+- **Modular Design**: Screens are separated into `Auth`, `Dashboard`, `Quiz`, and `History`.
 
 ---
-**QuizLOS Mobile v.1.0**
+**QuizLOS Mobile v.1.0 • Built for Integrity**

@@ -10,4 +10,4 @@ export const COLORS = {
   warning: '#F59E0B'
 };
 
-export const API_URL = 'http://192.168.1.6:8000/api'; 
+export const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:8000/api'; 
