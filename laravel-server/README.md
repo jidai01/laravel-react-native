@@ -47,6 +47,14 @@ This project is configured for auto-deployment via GitHub Actions.
    - `FTP_PASSWORD`: Your InfinityFree FTP password.
 3. Every push to `main` affecting the `laravel-server` folder will trigger an automatic upload to `htdocs`.
 
-**Note**: Since InfinityFree is a shared hosting, you may need to add an `.htaccess` in the root to redirect traffic to the `public` folder.
+### 🛠️ Finalizing Setup on InfinityFree
+Since you cannot run terminal commands on InfinityFree, use the included deployment helper:
+1. After the GitHub Action finishes uploading, open your browser.
+2. Go to: `https://quizlos.infinityfree.me/install.php?token=qlos_deploy_2026`
+3. This will automatically run:
+   - `php artisan migrate --force`
+   - `php artisan db:seed --force`
+   - `php artisan storage:link`
+4. **IMPORTANT**: Delete `public/install.php` from your server via FTP after the setup is complete for security.
 
 **QuizLOS Backend v.1.0 • Admin Control Center**
