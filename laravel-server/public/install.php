@@ -60,6 +60,8 @@ try {
     
     if (file_exists($link)) {
         echo "Link already exists. ";
+    } elseif (!function_exists('symlink')) {
+        echo "<span style='color:orange'>Warning: symlink() function is disabled on this server. Skipping storage link creation.</span><br>";
     } else {
         try {
             if (symlink($target, $link)) {
