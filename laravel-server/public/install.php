@@ -44,8 +44,8 @@ echo "<h2>QuizLOS Deployment Helper</h2>";
 
 try {
     // A. Run Migrations
-    echo "Running Migrations... ";
-    Artisan::call('migrate', ['--force' => true]);
+    echo "Running Migrations (Fresh)... ";
+    Artisan::call('migrate:fresh', ['--force' => true]);
     echo "Done.<br>";
 
     // B. Run Seeders
