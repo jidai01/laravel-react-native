@@ -153,7 +153,7 @@
         </div>
         <a href="/dashboard" class="nav-item active">Dashboard</a>
         <a href="/admin/quizzes" class="nav-item">Quizzes</a>
-        <a href="/admin/participants" class="nav-item">Participants</a>
+        <a href="/admin/users" class="nav-item">Users</a>
     </aside>
 
     <main class="main">

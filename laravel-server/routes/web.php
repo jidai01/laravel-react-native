@@ -23,10 +23,12 @@ Route::prefix('admin')->group(function () {
     Route::put('/quizzes/{id}', [QuizController::class, 'updateQuiz']);
     Route::delete('/quizzes/{id}', [QuizController::class, 'deleteQuiz']);
 
-    // Participants
-    Route::get('/participants', [QuizController::class, 'indexParticipants']);
-    Route::post('/participants/{id}/reset', [QuizController::class, 'resetDisqualification']);
-    Route::delete('/participants/{id}', [QuizController::class, 'deleteParticipant']);
+    // Users Management (Admins & Participants)
+    Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
+    Route::post('/users', [\App\Http\Controllers\UserController::class, 'store']);
+    Route::put('/users/{id}', [\App\Http\Controllers\UserController::class, 'update']);
+    Route::delete('/users/{id}', [\App\Http\Controllers\UserController::class, 'destroy']);
+    Route::post('/users/{id}/toggle-status', [\App\Http\Controllers\UserController::class, 'toggleDisqualification']);
 
     // Results
     Route::delete('/results/{id}', [QuizController::class, 'deleteResult']);

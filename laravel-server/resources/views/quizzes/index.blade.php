@@ -75,7 +75,7 @@
         </div>
         <a href="/dashboard" class="nav-item">Dashboard</a>
         <a href="/admin/quizzes" class="nav-item active">Quizzes</a>
-        <a href="/admin/participants" class="nav-item">Participants</a>
+        <a href="/admin/users" class="nav-item">Users</a>
     </aside>
 
     <main class="main">
