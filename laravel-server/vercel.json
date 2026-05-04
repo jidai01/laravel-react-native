@@ -1,33 +1,26 @@
 {
     "version": 2,
-    "builds": [
-        {
-            "src": "api/index.php",
-            "use": "vercel-php@0.7.4"
-        },
-        {
-            "src": "public/**",
-            "use": "@vercel/static"
+    "functions": {
+        "api/index.php": {
+            "runtime": "vercel-php@0.7.4"
         }
-    ],
+    },
     "routes": [
         {
             "src": "/build/(.*)",
             "dest": "/public/build/$1"
         },
         {
+            "src": "/assets/(.*)",
+            "dest": "/public/assets/$1"
+        },
+        {
+            "src": "/favicon.ico",
+            "dest": "/public/favicon.ico"
+        },
+        {
             "src": "/(.*)",
             "dest": "/api/index.php"
         }
     ],
-    "env": {
-        "APP_ENV": "production",
-        "APP_DEBUG": "false",
-        "APP_KEY": "base64:gfvPmb/OdS4R/1oFJsN27FYgsEWtI0woHo4U+MRAnoQ=",
-        "APP_URL": "https://laravel-react-native.vercel.app",
-        "LOG_CHANNEL": "stderr",
-        "CACHE_STORE": "array",
-        "SESSION_DRIVER": "cookie",
-        "SESSION_SECURE_COOKIE": "true"
-    }
 }
