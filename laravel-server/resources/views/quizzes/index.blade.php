@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <!-- SortableJS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <style>
         :root { 
             --primary: #4F46E5; 
@@ -40,6 +42,13 @@
         .option-item input { margin-bottom: 0; flex: 1; }
         .remove-opt { background: #FEE2E2; color: var(--danger); border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; }
         .add-opt { background: #EEF2FF; color: var(--primary); border: 2px dashed #C7D2FE; padding: 10px; border-radius: 8px; width: 100%; cursor: pointer; font-weight: 600; margin-bottom: 1.5rem; }
+        
+        .sortable-ghost {
+            opacity: 0.5;
+            background: #EEF2FF !important;
+            border: 2px dashed var(--primary) !important;
+            border-radius: 12px;
+        }
 
         .btn { padding: 0.75rem 1.5rem; border-radius: 0.5rem; border: none; cursor: pointer; font-weight: 600; transition: all 0.2s; font-family: inherit; }
         .btn-primary { background: var(--primary); color: white; }
