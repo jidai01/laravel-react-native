@@ -21,8 +21,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // \Illuminate\Support\Facades\Schema::defaultStringLength(191);
-        if ($this->app->environment('production')) {
-            URL::forceScheme('https');
-        }
+        if (config('app.env') === 'production') {
+        \URL::forceScheme('https');
+    }
+
+    // Pengaturan cache view untuk Vercel
+    config(['view.compiled' => '/tmp/storage/framework/views']);
     }
 }
