@@ -79,8 +79,7 @@
     </aside>
 
     <main class="main">
-        @if(session('error')) <div class="error-alert">{{ session('error') }}</div> @endif
-        @if(session('success')) <div class="success-alert">{{ session('success') }}</div> @endif
+        <!-- SweetAlert2 handled via script -->
 
         <div class="card">
             <h2 style="font-size: 1.25rem;">{{ $editingQuiz ? 'Edit Quiz' : 'Add New Quiz' }}</h2>
@@ -174,7 +173,7 @@
                             <td style="border-radius: 0 12px 12px 0; text-align: center;">
                                 <div style="display: flex; gap: 8px; justify-content: center;">
                                     <a href="/admin/quizzes?edit={{ $quiz->id }}" class="action-btn-edit">Edit</a>
-                                    <form action="/admin/quizzes/{{ $quiz->id }}" method="POST" onsubmit="return confirm('Delete this question?')">
+                                    <form action="/admin/quizzes/{{ $quiz->id }}" method="POST" onsubmit="return confirmAction(event, this, 'Delete this question?', 'This will permanently remove the question and its options.', 'Yes, delete it!')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="action-btn-delete">Delete</button>
@@ -229,7 +228,7 @@
         function addOption() {
             const count = container.querySelectorAll('.option-item').length;
             if (count >= 6) {
-                alert('Maximum 6 options allowed');
+                Swal.fire('Limit Reached', 'Maximum 6 options allowed', 'info');
                 return;
             }
             
@@ -247,7 +246,7 @@
         function removeOption(btn) {
             const count = container.querySelectorAll('.option-item').length;
             if (count <= 2) {
-                alert('Minimum 2 options required');
+                Swal.fire('Cannot Remove', 'Minimum 2 options required', 'warning');
                 return;
             }
             btn.parentElement.remove();
@@ -263,6 +262,47 @@
         }
 
         updateRemoveButtons();
+    </script>
+
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: "{{ session('success') }}",
+                confirmButtonColor: '#4F46E5',
+                timer: 3000,
+                timerProgressBar: true
+            });
+        @endif
+
+        @if(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: "{{ session('error') }}",
+                confirmButtonColor: '#EF4444'
+            });
+        @endif
+
+        function confirmAction(e, form, title, text, confirmText) {
+            e.preventDefault();
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#EF4444',
+                cancelButtonColor: '#9CA3AF',
+                confirmButtonText: confirmText
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
     </script>
 </body>
 </html>

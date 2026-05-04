@@ -158,7 +158,7 @@
 
     <main class="main">
         <nav class="navbar">
-            <a href="/logout" class="logout-btn">Sign Out</a>
+            <a href="#" onclick="confirmLogout(event)" class="logout-btn">Sign Out</a>
         </nav>
 
         <div class="container">
@@ -179,11 +179,7 @@
                     </div>
                 </div>
                 
-                @if(session('success'))
-                    <div style="background: #ECFDF5; color: var(--success); padding: 1.25rem; border-radius: 12px; margin-bottom: 1.5rem; font-weight: 600; border: 1px solid #A7F3D0; display: flex; align-items: center; gap: 10px;">
-                        <span style="font-size: 1.25rem;">✓</span> {{ session('success') }}
-                    </div>
-                @endif
+                <!-- SweetAlert2 handled via script -->
 
                 <div class="table-responsive" style="overflow-x: auto; margin: 0 -4px;">
                     <table id="resultsTable" class="display" style="width:100%; border-spacing: 0 8px; border-collapse: separate;">
@@ -245,7 +241,7 @@
                                     </div>
                                 </td>
                                 <td style="border-radius: 0 12px 12px 0; text-align: center;">
-                                    <form action="/admin/results/{{ $result->id }}" method="POST" onsubmit="return confirm('Delete this record permanently?')">
+                                    <form action="/admin/results/{{ $result->id }}" method="POST" onsubmit="return confirmAction(event, this, 'Delete this record permanently?', 'This action cannot be undone!', 'Yes, delete it!')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="delete-btn-custom">
@@ -354,5 +350,63 @@
             </div>
         </div>
     </main>
+
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: "{{ session('success') }}",
+                confirmButtonColor: '#10B981',
+                timer: 3000,
+                timerProgressBar: true
+            });
+        @endif
+        
+        @if(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: "{{ session('error') }}",
+                confirmButtonColor: '#EF4444'
+            });
+        @endif
+
+        function confirmAction(e, form, title, text, confirmText) {
+            e.preventDefault();
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#EF4444',
+                cancelButtonColor: '#9CA3AF',
+                confirmButtonText: confirmText
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
+
+        function confirmLogout(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Sign Out?',
+                text: "Are you sure you want to end your session?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#EF4444',
+                cancelButtonColor: '#9CA3AF',
+                confirmButtonText: 'Yes, sign out'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/logout';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

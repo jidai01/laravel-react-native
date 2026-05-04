@@ -107,9 +107,7 @@
         <h1>Admin Portal</h1>
         <p>Enter your credentials to access the dashboard</p>
         
-        @if(session('error'))
-            <div class="error">{{ session('error') }}</div>
-        @endif
+        <!-- SweetAlert2 handled via script -->
         
         <form action="/login" method="POST">
             @csrf
@@ -122,5 +120,23 @@
             <button type="submit">Sign In</button>
         </form>
     </div>
+
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        @if(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Access Denied',
+                text: "{{ session('error') }}",
+                confirmButtonColor: '#4F46E5',
+                background: '#ffffff',
+                customClass: {
+                    title: 'swal-title',
+                    confirmButton: 'swal-btn'
+                }
+            });
+        @endif
+    </script>
 </body>
 </html>

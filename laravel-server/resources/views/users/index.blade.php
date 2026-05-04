@@ -75,8 +75,7 @@
     </aside>
 
     <main class="main">
-        @if(session('success')) <div class="success-alert"><span>✓</span> {{ session('success') }}</div> @endif
-        @if(session('error')) <div class="error-alert"><span>!</span> {{ session('error') }}</div> @endif
+        <!-- SweetAlert2 handled via script -->
         
         @if ($errors->any())
             <div class="error-alert">
@@ -196,19 +195,19 @@
                                     <a href="/admin/users?edit={{ $user->id }}" class="btn-edit-custom">Edit</a>
                                     
                                     @if(!$user->is_admin)
-                                        <form action="/admin/users/{{ $user->id }}/toggle-status" method="POST">
+                                        <form action="/admin/users/{{ $user->id }}/toggle-status" method="POST" onsubmit="return confirmAction(event, this, 'Change user status?', 'Are you sure you want to change the status for {{ $user->name }}?', 'Yes, change it!')">
                                             @csrf
-                                            <button type="submit" class="btn-toggle-custom {{ $user->is_disqualified ? 'btn-restore' : 'btn-ban' }}" onclick="return confirm('Change status for {{ $user->name }}?')">
+                                            <button type="submit" class="btn-toggle-custom {{ $user->is_disqualified ? 'btn-restore' : 'btn-ban' }}">
                                                 {{ $user->is_disqualified ? 'Restore' : 'Ban' }}
                                             </button>
                                         </form>
                                     @endif
                                     
                                     @if($user->id !== auth()->id())
-                                        <form action="/admin/users/{{ $user->id }}" method="POST">
+                                        <form action="/admin/users/{{ $user->id }}" method="POST" onsubmit="return confirmAction(event, this, 'Delete this user?', 'This will also delete all their quiz results. This action cannot be undone!', 'Yes, delete it!')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn-delete-custom" onclick="return confirm('Delete user {{ $user->name }} permanently? This will also delete all their quiz results.')">Delete</button>
+                                            <button type="submit" class="btn-delete-custom">Delete</button>
                                         </form>
                                     @endif
                                 </div>
@@ -254,6 +253,47 @@
                 }
             });
         });
+    </script>
+
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: "{{ session('success') }}",
+                confirmButtonColor: '#4F46E5',
+                timer: 3000,
+                timerProgressBar: true
+            });
+        @endif
+
+        @if(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: "{{ session('error') }}",
+                confirmButtonColor: '#EF4444'
+            });
+        @endif
+
+        function confirmAction(e, form, title, text, confirmText) {
+            e.preventDefault();
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#EF4444',
+                cancelButtonColor: '#9CA3AF',
+                confirmButtonText: confirmText
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
     </script>
 </body>
 </html>
