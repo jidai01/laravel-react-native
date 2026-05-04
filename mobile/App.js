@@ -169,7 +169,13 @@ function QuizApp() {
     try {
       console.log(`Attempting login to: ${API_URL}/login`);
       const res = await axios.post(`${API_URL}/login`, { email, password });
+      console.log('--- SERVER RESPONSE ---');
+      console.log(res.data);
+      
       const { access_token, user } = res.data;
+      if (!access_token) {
+        throw new Error('Access token missing in response. Check server output.');
+      }
       await SecureStore.setItemAsync('userToken', access_token);
       setAuth({ token: access_token, user });
       if (user.is_disqualified) setShowDisqualifiedModal(true);
