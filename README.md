@@ -1,50 +1,80 @@
 # QuizLOS v.1.0 🚀
 
-**QuizLOS** is a premium, secure, and offline-first quiz platform designed for high-integrity examinations. It consists of a robust backend for administrators and a sleek, anti-cheat mobile application for participants.
+<div align="center">
+  <img src="laravel-server/public/logo.svg" width="150" height="150" alt="QuizLOS Logo">
+  <h3>Secure • Professional • Offline-First</h3>
+  <p><b>A modern examination platform for high-integrity testing.</b></p>
+</div>
 
-## 🌟 Repository Structure
+---
 
-- **`laravel-server/`**: The administrative dashboard and API built with Laravel 11.
-- **`mobile/`**: The participant application built with React Native (Expo).
+## 🌟 Overview
+
+**QuizLOS** is a premium, secure, and offline-first quiz platform designed for schools and organizations that require high-integrity examinations. It consists of:
+- **Admin Dashboard**: A robust Laravel 11 backend for real-time monitoring and quiz management.
+- **Participant App**: A sleek React Native (Expo) mobile application with built-in anti-cheat technology.
 
 ---
 
 ## 🛠 Tech Stack
 
-### Backend (Laravel 11)
-- **Framework**: Laravel 11 with Sanctum Authentication.
-- **Real-time Monitoring**: Custom Live Activity Log with Asia/Makassar (WITA) precision.
-- **Database**: MySQL with support for automated disqualification flags.
-- **UI**: Premium Indigo theme with DataTables integration.
+### 🖥️ Backend (Laravel 11)
+- **Engine**: PHP 8.2+ & Laravel 11.
+- **Security**: Laravel Sanctum for API Auth & Rate Limiting.
+- **Monitoring**: Custom Live Activity Log with Asia/Makassar (WITA) precision.
+- **UI/UX**: Indigo Premium Theme, DataTables integration, Responsive Design.
 
-### Mobile (React Native Expo)
-- **Framework**: Expo (SDK 51+) with modular architecture.
-- **Security**: background state detection (Anti-Cheat), `expo-navigation-bar` lock.
-- **Storage**: Offline-first synchronization with SQLite and SecureStore.
-- **Styling**: Consistent "QLOS Indigo" branding.
+### 📱 Mobile (React Native Expo)
+- **Engine**: Expo SDK 51+ (Modular Architecture).
+- **Security**: Background Detection (Anti-Cheat), `expo-navigation-bar` System Lock.
+- **Database**: `expo-sqlite` for offline-first data integrity.
+- **Styling**: Unified QLOS Branding with smooth micro-animations.
 
 ---
 
 ## 🔐 Key Features
 
-1. **Automated Disqualification**: Real-time detection of app backgrounding or unauthorized exits.
-2. **Activity Monitor**: Admins can track exactly when a student selects or changes an answer.
-3. **Offline Mode**: Participants can continue the quiz even if the internet connection is unstable; data syncs automatically.
-4. **Brute-Force Protection**: Server-side rate limiting on login and registration.
-5. **Secure Sync**: All data transmissions are protected by Sanctum tokens and validated on the server.
+- **🛡️ Anti-Cheat Enforcement**: Automatic disqualification if the participant exits the app or enters background mode.
+- **📊 Real-time Activity Monitor**: Admins see exactly when a participant starts, answers, or changes their response.
+- **🌐 Offline-First Sync**: Take quizzes without constant internet; progress is saved locally and synced automatically when online.
+- **⚡ Performance Tables**: Advanced search, sort, and pagination for large participant datasets.
+- **🕒 WITA Sync**: All logs are synchronized to Asia/Makassar (WITA) time for accurate examination auditing.
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Installation & Setup
 
-To get started with each part of the project, follow the instructions in the `README.md` provided in their respective folders:
+### 1. Admin Server (Laravel)
+```bash
+cd laravel-server
+composer install
+npm install
+# Configure your .env (DB, App URL)
+php artisan migrate:fresh --seed
+php artisan serve --host=0.0.0.0
+```
 
-- For Admin Setup: Go to `/laravel-server`
-- For Mobile Setup: Go to `/mobile`
+### 2. Participant App (Mobile)
+```bash
+cd mobile
+npm install
+# Update API_URL in src/theme/constants.js
+npx expo start
+```
+
+---
+
+## 📂 Project Structure
+```text
+.
+├── laravel-server/   # Backend, Admin Panel, and API
+├── mobile/           # React Native Participant Application
+└── README.md         # Main project documentation
+```
 
 ---
 
 ## 📄 License
 This project is for internal development and examination purposes.
 
-**QuizLOS v.1.0 • All Systems Operational**
+**QuizLOS v.1.0 • Built for Integrity**
