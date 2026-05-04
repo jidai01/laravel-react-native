@@ -167,13 +167,19 @@ function QuizApp() {
     if (!email || !password) return Alert.alert('Error', 'Fields required');
     setLoading(true);
     try {
+      console.log(`Attempting login to: ${API_URL}/login`);
       const res = await axios.post(`${API_URL}/login`, { email, password });
       const { access_token, user } = res.data;
       await SecureStore.setItemAsync('userToken', access_token);
       setAuth({ token: access_token, user });
       if (user.is_disqualified) setShowDisqualifiedModal(true);
       setView('start');
-    } catch (e) { Alert.alert('Login Failed', 'Invalid credentials'); } 
+    } catch (e) { 
+      console.log('--- LOGIN ERROR ---');
+      console.log(e.response ? e.response.data : e.message);
+      console.log('Status:', e.response ? e.response.status : 'N/A');
+      Alert.alert('Login Failed', 'Invalid credentials or server error'); 
+    } 
     finally { setLoading(false); }
   };
 
@@ -181,12 +187,17 @@ function QuizApp() {
     if (!name || !email || !password) return Alert.alert('Error', 'Fields required');
     setLoading(true);
     try {
+      console.log(`Attempting register to: ${API_URL}/register`);
       const res = await axios.post(`${API_URL}/register`, { name, email, password });
       const { access_token, user } = res.data;
       await SecureStore.setItemAsync('userToken', access_token);
       setAuth({ token: access_token, user });
       setView('start');
-    } catch (e) { Alert.alert('Registration Failed', 'Check your data'); } 
+    } catch (e) { 
+      console.log('--- REGISTER ERROR ---');
+      console.log(e.response ? e.response.data : e.message);
+      Alert.alert('Registration Failed', 'Check your data or server connection'); 
+    } 
     finally { setLoading(false); }
   };
 
