@@ -1,0 +1,58 @@
+name: Deploy Laravel to InfinityFree
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'laravel-server/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📂 Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql
+          coverage: none
+
+      - name: 📦 Install Composer Dependencies
+        run: |
+          cd laravel-server
+          composer install --no-dev --optimize-autoloader --no-interaction
+
+      - name: 🏗️ Install NPM Dependencies & Build
+        run: |
+          cd laravel-server
+          npm install
+          npm run build
+
+      - name: 🧹 Cleanup & Prepare for Upload
+        run: |
+          cd laravel-server
+          rm -rf node_modules
+          rm -rf tests
+          # Note: We keep the vendor folder as InfinityFree doesn't allow running composer
+          
+      - name: 🚀 FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ftpupload.net
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./laravel-server/
+          server-dir: ./htdocs/
+          # Exclude files that shouldn't be on production or are handled differently
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            storage/framework/cache/**
+            storage/framework/sessions/**
+            storage/framework/views/**
+            .env

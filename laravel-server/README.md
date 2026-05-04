@@ -39,4 +39,14 @@ This is the backend logic and administrative dashboard for the **QuizLOS** platf
 - **Data Tables**: Integrated DataTables for high-performance data management (search, sort, paginate).
 
 ---
+## 🚀 Deployment (InfinityFree)
+This project is configured for auto-deployment via GitHub Actions.
+1. Go to your GitHub Repository **Settings > Secrets and variables > Actions**.
+2. Add the following secrets:
+   - `FTP_USERNAME`: Your InfinityFree FTP username (e.g., `if0_3xxx`).
+   - `FTP_PASSWORD`: Your InfinityFree FTP password.
+3. Every push to `main` affecting the `laravel-server` folder will trigger an automatic upload to `htdocs`.
+
+**Note**: Since InfinityFree is a shared hosting, you may need to add an `.htaccess` in the root to redirect traffic to the `public` folder.
+
 **QuizLOS Backend v.1.0 • Admin Control Center**
