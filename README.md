@@ -4,11 +4,8 @@
 
 ## 🌟 Repository Structure
 
-This repository uses separate branches to manage the backend and frontend codebases independently:
-
-- **[`main`](https://github.com/jidai01/laravel-react-native/tree/main)**: Overview and project documentation.
-- **[`laravel-server`](https://github.com/jidai01/laravel-react-native/tree/laravel-server)**: The administrative dashboard and API built with Laravel 11.
-- **[`mobile`](https://github.com/jidai01/laravel-react-native/tree/mobile)**: The participant application built with React Native (Expo).
+- **`laravel-server/`**: The administrative dashboard and API built with Laravel 11.
+- **`mobile/`**: The participant application built with React Native (Expo).
 
 ---
 
@@ -40,10 +37,10 @@ This repository uses separate branches to manage the backend and frontend codeba
 
 ## 🚀 Getting Started
 
-To get started with each part of the project, please switch to the respective branch and follow the instructions in the `README.md` provided there:
+To get started with each part of the project, follow the instructions in the `README.md` provided in their respective folders:
 
-- For Admin Setup: `git checkout laravel-server`
-- For Mobile Setup: `git checkout mobile`
+- For Admin Setup: Go to `/laravel-server`
+- For Mobile Setup: Go to `/mobile`
 
 ---
 
